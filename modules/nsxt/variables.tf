@@ -1,66 +1,66 @@
 # NSX-T specific variables
 
 variable "nsxt_t0_router" {
-  type = string
+  type        = string
   description = "Name or ID for the T0 Router"
 }
 
 variable "nsxt_edgecluster" {
-  type = string
+  type        = string
   description = "Name of the edge cluster"
 }
 
 variable "nsxt_api" {
-  type = string
+  type        = string
   description = "IP or FQDN of the NSX manager or VIP"
 }
 
 variable "nsxt_username" {
-  type = string
+  type        = string
   description = "Username for NSX-T API Calls"
 }
 
 variable "nsxt_password" {
-  type = string
+  type        = string
   description = "Password for the account referenced in nsxt_username"
 }
 
 variable "nsxt_overlay_tz" {
-  type = string
+  type        = string
   description = "Name or ID of the NSX overlay transport zone"
 }
 
 variable "nsxt_container_ipblocks" {
-  type = string
+  type        = string
   description = "CIDR block used to allocate IP addresses to Pods"
-  default = "172.150.0.0/16"
+  default     = "172.150.0.0/16"
 }
 
 variable "nsxt_external_ip_pools_lb" {
-  type = string
+  type        = string
   description = "IP Pool to allocate external IP addresses from"
 }
 
 variable "nsxt_overlay_network" {
-    type = string
-    description = "Network used for overlay network segment"
-    default = "172.16.110.0"
+  type        = string
+  description = "Network used for overlay network segment"
+  default     = "172.16.110.0"
 }
 
 variable "nsxt_overlay_mask" {
-    type = string
-    description = "Subnet mask used for overlay network segment"
-    default = "24"
+  type        = string
+  description = "Subnet mask used for overlay network segment"
+  default     = "24"
 }
 
 variable "nsxt_management_network" {
-    type = string
-    description = "Network used for management network segment"
-    default = "172.16.111.0"
+  type        = string
+  description = "Network used for management network segment"
+  default     = "172.16.111.0"
 }
 
 variable "nsxt_management_mask" {
-    type = string
-    description = "Subnet mask used for management network segment"
-    default = "24"
+  type        = string
+  description = "Subnet mask used for management network segment"
+  default     = "24"
 }

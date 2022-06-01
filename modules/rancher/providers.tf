@@ -1,11 +1,11 @@
 terraform {
   required_providers {
     vsphere = {
-      source = "hashicorp/vsphere"
+      source  = "hashicorp/vsphere"
       version = "2.1.1"
     }
     rancher2 = {
-      source = "rancher/rancher2"
+      source  = "rancher/rancher2"
       version = "1.24.0"
     }
   }

@@ -10,7 +10,7 @@ data "nsxt_policy_edge_cluster" "edgecluster" {
 
 data "nsxt_policy_tier0_gateway" "t0" {
   display_name = var.nsxt_t0_router
-  
+
 }
 
 
@@ -44,7 +44,7 @@ resource "nsxt_policy_dhcp_server" "management-dhcp-server" {
 resource "nsxt_policy_segment" "overlay-segment" {
   display_name        = "overlay-segment"
   transport_zone_path = data.nsxt_policy_transport_zone.overlay_tz.path
-  dhcp_config_path = nsxt_policy_dhcp_server.overlay-dhcp-server.path
+  dhcp_config_path    = nsxt_policy_dhcp_server.overlay-dhcp-server.path
 
   subnet {
     cidr = join("", [cidrhost("${var.nsxt_overlay_network}/${var.nsxt_overlay_mask}", 1), "/", var.nsxt_overlay_mask])
@@ -53,16 +53,18 @@ resource "nsxt_policy_segment" "overlay-segment" {
 
     dhcp_v4_config {
       server_address = nsxt_policy_dhcp_server.overlay-dhcp-server.server_addresses[0]
-      dns_servers = [ "192.168.1.208" ]
+      dns_servers    = ["192.168.1.208"]
     }
   }
 }
 
+
+
 resource "nsxt_policy_segment" "management-segment" {
   display_name        = "management-segment"
   transport_zone_path = data.nsxt_policy_transport_zone.overlay_tz.path
-  dhcp_config_path = nsxt_policy_dhcp_server.management-dhcp-server.path
-  connectivity_path = nsxt_policy_tier1_gateway.tier1_gw.path
+  dhcp_config_path    = nsxt_policy_dhcp_server.management-dhcp-server.path
+  connectivity_path   = nsxt_policy_tier1_gateway.tier1_gw.path
 
   subnet {
     cidr = join("", [cidrhost("${var.nsxt_management_network}/${var.nsxt_management_mask}", 1), "/", var.nsxt_management_mask])
@@ -71,7 +73,7 @@ resource "nsxt_policy_segment" "management-segment" {
 
     dhcp_v4_config {
       server_address = nsxt_policy_dhcp_server.management-dhcp-server.server_addresses[0]
-      dns_servers = [ "192.168.1.208" ]
+      dns_servers    = ["192.168.1.208"]
     }
   }
 }
