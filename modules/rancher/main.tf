@@ -13,19 +13,20 @@ resource "rancher2_machine_config_v2" "vsphere-nsxt-mc" {
   generate_name = "mc-nsxt"
   vsphere_config {
     clone_from  = var.vm_template_name
+    creation_type = "template"
     cpu_count   = var.vm_template_num_cpu
     datacenter  = var.vm_datacenter
     disk_size   = var.vm_template_disk_size
     memory_size = var.vm_mem_size
     datastore   = var.vm_datastore
     network     = var.vm_network_list
-
   }
 }
 
 resource "rancher2_cluster_v2" "nsxt_cluster" {
   name               = var.k8s_clustername
   kubernetes_version = "1.22.9+rke2r2"
+  cloud_credential_secret_name = rancher2_cloud_credential.nsxt_vsphere_credentials.id
   rke_config {
     machine_pools {
       name                         = "aio"
