@@ -13,24 +13,6 @@ variable "vsphere_server" {
   description = "vCenter server IP or FQDN"
 }
 
-# K8s specific variables
-
-variable "k8s_clustername" {
-  type        = string
-  description = "Name of the k8s cluster used for port tagging"
-}
-variable "k8s_ovs_uplink_port" {
-  type        = string
-  description = "Name of the interface used for overlay traffic"
-}
-variable "k8s_apiserver_host_port" {
-  type        = string
-  description = "IP or FQDN to access the API server. Can either be a LB-fronted IP or one of the node IPs"
-}
-variable "k8s_ncp_image_location" {
-  type        = string
-  description = "Image tag for the NCP container image"
-}
 
 # VM specific variables
 
@@ -89,4 +71,10 @@ variable "rancher2_secret_key" {
 variable "rancher2_baseurl" {
   type        = string
   description = "URL for the Rancher API endpoint"
+}
+
+
+variable "k8s_clustername" {
+  type = string
+  description = "Name of the cluster"
 }

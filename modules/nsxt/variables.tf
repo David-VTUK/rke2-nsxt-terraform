@@ -36,9 +36,23 @@ variable "nsxt_container_ipblocks" {
   default     = "172.150.0.0/16"
 }
 
+variable "nsxt_container_ipblocks_name" {
+  type        = string
+  description = "Name of the IP address block used for container networking"
+  default     = "IB_K8S_PODS"
+}
+
+variable "nsxt_external_ip_pools_lb_name" {
+  type        = string
+  description = "Name of the IP Poolk used to allocate IP addresses to LB services"
+  default     = "IP_K8S_LB"
+}
+
+
 variable "nsxt_external_ip_pools_lb" {
   type        = string
   description = "IP Pool to allocate external IP addresses from"
+  default = "10.100.100.0/24"
 }
 
 variable "nsxt_overlay_network" {

@@ -6,7 +6,11 @@ terraform {
     }
     rancher2 = {
       source  = "rancher/rancher2"
-      version = "1.21.0"
+      version = "1.24.0"
+    }
+    template = {
+      source = "hashicorp/template"
+      version = "2.2.0"
     }
   }
 }

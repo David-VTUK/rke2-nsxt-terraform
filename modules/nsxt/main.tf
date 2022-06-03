@@ -77,3 +77,38 @@ resource "nsxt_policy_segment" "management-segment" {
     }
   }
 }
+
+resource "nsxt_policy_security_policy" "policy-top" {
+  display_name = "k8s_nsxt_top"
+  category = "Application"
+}
+
+resource "nsxt_policy_security_policy" "policy-bottom" {
+  display_name = "k8s_nsxt_bottom"
+    category = "Application"
+}
+
+resource "nsxt_policy_ip_block" "container_ipblock" {
+  display_name = var.nsxt_container_ipblocks_name
+  cidr = var.nsxt_container_ipblocks
+}
+
+
+
+resource "nsxt_policy_ip_block" "lb_ipblock" {
+  display_name = var.nsxt_external_ip_pools_lb_name
+  cidr = var.nsxt_external_ip_pools_lb
+}
+
+resource "nsxt_policy_ip_pool" "lb_ippool" {
+  display_name = var.nsxt_external_ip_pools_lb_name
+}
+
+resource "nsxt_policy_ip_pool_block_subnet" "lb_ip_blocksubnet" {
+  display_name        = var.nsxt_external_ip_pools_lb_name
+  pool_path           = nsxt_policy_ip_pool.lb_ippool.path
+  block_path          = nsxt_policy_ip_block.lb_ipblock.path
+  size                = 32
+  auto_assign_gateway = false
+}
+

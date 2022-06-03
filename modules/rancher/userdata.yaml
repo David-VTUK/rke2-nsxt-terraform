@@ -1,0 +1,10 @@
+#cloud-config
+runcmd:
+  - bash sleep 30
+  - bash service vmtoolsd start
+bootcmd:
+  - growpart /dev/sda 3
+  - pvresize /dev/sda3
+  - lvextend -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv
+  - resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv
+  - bash service vmtoolsd stop
