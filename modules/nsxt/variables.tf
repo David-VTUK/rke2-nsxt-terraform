@@ -60,6 +60,15 @@ variable "nsxt_overlay_network" {
   description = "Network used for overlay network segment"
   default     = "172.16.110.0"
 }
+variable "nsxt_overlay_network_name" {
+  type        = string
+  description = "Network name used for overlay network segment"
+}
+
+variable "nsxt_management_network_name" {
+  type        = string
+  description = "Network name used for management network segment"
+}
 
 variable "nsxt_overlay_mask" {
   type        = string

@@ -42,9 +42,10 @@ resource "nsxt_policy_dhcp_server" "management-dhcp-server" {
 
 
 resource "nsxt_policy_segment" "overlay-segment" {
-  display_name        = "overlay-segment"
+  display_name        = var.nsxt_overlay_network_name
   transport_zone_path = data.nsxt_policy_transport_zone.overlay_tz.path
   dhcp_config_path    = nsxt_policy_dhcp_server.overlay-dhcp-server.path
+
 
   subnet {
     cidr = join("", [cidrhost("${var.nsxt_overlay_network}/${var.nsxt_overlay_mask}", 1), "/", var.nsxt_overlay_mask])
@@ -61,7 +62,7 @@ resource "nsxt_policy_segment" "overlay-segment" {
 
 
 resource "nsxt_policy_segment" "management-segment" {
-  display_name        = "management-segment"
+  display_name        = var.nsxt_management_network_name
   transport_zone_path = data.nsxt_policy_transport_zone.overlay_tz.path
   dhcp_config_path    = nsxt_policy_dhcp_server.management-dhcp-server.path
   connectivity_path   = nsxt_policy_tier1_gateway.tier1_gw.path

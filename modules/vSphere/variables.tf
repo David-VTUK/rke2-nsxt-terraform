@@ -1,9 +1,64 @@
-# K8s specific variables
+# vSphere specific variables
+
+/*
+variable "vsphere_user" {
+  type        = string
+  description = "Username for vSphere authentication"
+}
+variable "vsphere_password" {
+  type        = string
+  description = "Password for vSphere authentication"
+}
+variable "vsphere_server" {
+  type        = string
+  description = "vCenter server IP or FQDN"
+}
+
+variable "overlay_segment_id" {
+  type        = string
+  description = "Reference to the overlay logical switch"
+}
+*/
+
+variable "management_segment_id" {
+  type        = string
+  description = "Reference to the management logical switch"
+}
+
+
+variable "nsxt_management_network_name" {
+  type        = string
+  description = "Network name used for management network segment"
+}
+
+variable "nsxt_overlay_network_name" {
+  type        = string
+  description = "Network name used for overlay network segment"
+}
+
+variable "nsxt_overlay_network_path" {
+  type        = string
+  description = "Network name used for overlay network segment"
+}
+
+variable "nsxt_management_network_path" {
+  type        = string
+  description = "Network name used for management network segment"
+}
 
 variable "k8s_clustername" {
-  type        = string
-  description = "Name of the k8s cluster used for port tagging"
+    type = string
+    description = "Name of the cluster used for tagging"
 }
+
+variable "k8s_nodename" {
+    type = string
+    description = "Name of the node"
+}
+
+# K8s specific variables
+
+
 variable "k8s_ovs_uplink_port" {
   type        = string
   description = "Name of the interface used for overlay traffic"
@@ -13,10 +68,6 @@ variable "k8s_apiserver_host_port" {
   description = "Port number access the API server. Can either be a LB-fronted IP or one of the node IPs"
 }
 
-variable "k8s_apiserver_host" {
-  type        = string
-  description = "IP or FQDN to access the API server. Can either be a LB-fronted IP or one of the node IPs"
-}
 
 variable "k8s_ncp_image_location" {
   type        = string
