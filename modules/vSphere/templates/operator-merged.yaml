@@ -11,7 +11,7 @@ data:
 
     # If set to true, the logging level will be set to DEBUG instead of the
     # default INFO level.
-    #debug = False
+    debug = true
 
 
 
@@ -320,7 +320,7 @@ data:
     # is used for http and port 443 for https.
     nsx_api_managers = ${NSXT_MANAGER_IP}
     nsx_api_user = ${NSXT_MANAGER_USERNAME}
-    nsx_api_password = {NSXT_MANAGER_PASSWORD}
+    nsx_api_password = ${NSXT_MANAGER_PASSWORD}
     insecure = ${NSXT_MANAGER_INSECURE}
 
     # If True, skip fatal errors when no endpoint in the NSX management cluster

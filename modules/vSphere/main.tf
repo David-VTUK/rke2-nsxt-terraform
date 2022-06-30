@@ -119,7 +119,8 @@ data "template_file" "policy" {
     NSXT_IMAGE_LOCATION = var.k8s_ncp_image_location
         NSXT_CLUSTER_NAME = var.k8s_clustername
         K8S_SERVER_PORT = var.k8s_apiserver_host_port
-        K8S_SERVER_ADDRESS = "172.16.110.1"
+       // K8S_SERVER_ADDRESS = join("", [cidrhost("${var.nsxt_management_network}/${var.nsxt_management_mask}", 100), "/", var.nsxt_management_mask])
+        K8S_SERVER_ADDRESS = cidrhost("${var.nsxt_management_network}/${var.nsxt_management_mask}", 100)
         OVS_UPLINK_NIC = var.k8s_ovs_uplink_port
         NSXT_MANAGER_IP = var.nsxt_api
         NSXT_MANAGER_USERNAME = var.nsxt_username

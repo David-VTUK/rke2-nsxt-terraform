@@ -125,3 +125,15 @@ variable "nsx_policy_bottom_ID" {
   type = string
   description = "ID of the bottom firewall policy object"  
 }
+
+variable "nsxt_management_network" {
+  type        = string
+  description = "Network used for management network segment"
+  default     = "172.16.111.0"
+}
+
+variable "nsxt_management_mask" {
+  type        = string
+  description = "Subnet mask used for management network segment"
+  default     = "24"
+}

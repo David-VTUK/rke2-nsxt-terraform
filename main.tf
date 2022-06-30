@@ -38,19 +38,11 @@ module "nsxt" {
 module "vsphere" {
   source = "./modules/vSphere"
 
-/*
-  vsphere_user = var.vsphere_user
-  vsphere_password = var.vsphere_password
-  vsphere_server = var.vsphere_server
-  overlay_segment_id = module.nsxt.overlay_segment_id
-  */
 
   management_segment_id = module.nsxt.management_segment_id
 
   nsxt_management_network_name = module.nsxt.management_segment_name
   nsxt_overlay_network_name = module.nsxt.overlay_segment_name
-
-//  nsxt_overlay_network_name = var.nsxt_overlay_network_name
 
   nsxt_management_network_path = module.nsxt.management_segment_path
   nsxt_overlay_network_path = module.nsxt.overlay_segment_path
@@ -58,7 +50,7 @@ module "vsphere" {
   k8s_clustername = var.k8s_clustername
   k8s_nodename = var.k8s_nodename
 
-    nsxt_insecure = var.nsxt_insecure
+  nsxt_insecure = var.nsxt_insecure
   nsx_policy_top_ID = module.nsxt.policy_top_ID
   nsx_policy_bottom_ID = module.nsxt.policy_bottom_ID
   nsxt_overlay_tz = var.nsxt_overlay_tz
