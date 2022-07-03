@@ -61,7 +61,7 @@ variable "nsxt_external_ip_pools_lb" {
 variable "nsxt_overlay_network" {
   type        = string
   description = "Network used for overlay network segment"
-  default     = "172.16.110.0"
+  default     = "172.16.111.0"
 }
 
 variable "nsxt_overlay_network_name" {
@@ -83,13 +83,18 @@ variable "nsxt_overlay_mask" {
 variable "nsxt_management_network" {
   type        = string
   description = "Network used for management network segment"
-  default     = "172.16.111.0"
+  default     = "172.16.110.0"
 }
 
 variable "nsxt_management_mask" {
   type        = string
   description = "Subnet mask used for management network segment"
   default     = "24"
+}
+
+variable "dns_server_address" {
+  type        = string
+  description = "DNS Server IP to be given out via DHCP leases"
 }
 
 
@@ -116,8 +121,8 @@ variable "k8s_clustername" {
 }
 
 variable "k8s_nodename" {
-    type = string
-    description = "Name of the node"
+  type        = string
+  description = "Name of the node"
 }
 
 variable "k8s_ovs_uplink_port" {

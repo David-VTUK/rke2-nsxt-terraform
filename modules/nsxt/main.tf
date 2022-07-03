@@ -47,15 +47,20 @@ resource "nsxt_policy_segment" "overlay-segment" {
   dhcp_config_path    = nsxt_policy_dhcp_server.overlay-dhcp-server.path
 
 
+
+
   subnet {
+
     cidr = join("", [cidrhost("${var.nsxt_overlay_network}/${var.nsxt_overlay_mask}", 1), "/", var.nsxt_overlay_mask])
 
     dhcp_ranges = [join("", [cidrhost("${var.nsxt_overlay_network}/${var.nsxt_overlay_mask}", 100), "-", cidrhost("${var.nsxt_overlay_network}/${var.nsxt_overlay_mask}", 200)])]
 
+
     dhcp_v4_config {
       server_address = nsxt_policy_dhcp_server.overlay-dhcp-server.server_addresses[0]
-      dns_servers    = ["192.168.1.208"]
+      dns_servers    = [var.dns_server_address]
     }
+
   }
 }
 
@@ -67,6 +72,7 @@ resource "nsxt_policy_segment" "management-segment" {
   dhcp_config_path    = nsxt_policy_dhcp_server.management-dhcp-server.path
   connectivity_path   = nsxt_policy_tier1_gateway.tier1_gw.path
 
+
   subnet {
     cidr = join("", [cidrhost("${var.nsxt_management_network}/${var.nsxt_management_mask}", 1), "/", var.nsxt_management_mask])
 
@@ -74,31 +80,31 @@ resource "nsxt_policy_segment" "management-segment" {
 
     dhcp_v4_config {
       server_address = nsxt_policy_dhcp_server.management-dhcp-server.server_addresses[0]
-      dns_servers    = ["192.168.1.208"]
+      dns_servers    = [var.dns_server_address]
     }
   }
 }
 
 resource "nsxt_policy_security_policy" "policy-top" {
   display_name = "k8s_nsxt_top"
-  category = "Application"
+  category     = "Application"
 }
 
 resource "nsxt_policy_security_policy" "policy-bottom" {
   display_name = "k8s_nsxt_bottom"
-    category = "Application"
+  category     = "Application"
 }
 
 resource "nsxt_policy_ip_block" "container_ipblock" {
   display_name = var.nsxt_container_ipblocks_name
-  cidr = var.nsxt_container_ipblocks
+  cidr         = var.nsxt_container_ipblocks
 }
 
 
 
 resource "nsxt_policy_ip_block" "lb_ipblock" {
   display_name = var.nsxt_external_ip_pools_lb_name
-  cidr = var.nsxt_external_ip_pools_lb
+  cidr         = var.nsxt_external_ip_pools_lb
 }
 
 resource "nsxt_policy_ip_pool" "lb_ippool" {

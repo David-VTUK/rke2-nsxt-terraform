@@ -1,24 +1,28 @@
-# vSphere specific variables
-
-/*
-variable "vsphere_user" {
+variable "vm_template_name" {
   type        = string
-  description = "Username for vSphere authentication"
-}
-variable "vsphere_password" {
-  type        = string
-  description = "Password for vSphere authentication"
-}
-variable "vsphere_server" {
-  type        = string
-  description = "vCenter server IP or FQDN"
+  description = "Name of the VM template used to create the RKE2 cluster"
 }
 
-variable "overlay_segment_id" {
-  type        = string
-  description = "Reference to the overlay logical switch"
+variable "vm_template_num_cpu" {
+  type        = number
+  description = "Number of vCPU's to allocate to each RKE2 node VM"
 }
-*/
+
+variable "vm_template_disk_size" {
+  type        = number
+  description = "Size (in GB) of the root disk for the RKE2 node VM"
+}
+
+variable "vm_mem_size" {
+  type        = number
+  description = "Size (in GB) of the amount of RAM allocated to the RKE2 VM"
+}
+
+variable "vm_datastore" {
+  type        = string
+  description = "Destination datastore for the RKE2 node VM"
+}
+
 
 variable "management_segment_id" {
   type        = string
@@ -47,13 +51,13 @@ variable "nsxt_management_network_path" {
 }
 
 variable "k8s_clustername" {
-    type = string
-    description = "Name of the cluster used for tagging"
+  type        = string
+  description = "Name of the cluster used for tagging"
 }
 
 variable "k8s_nodename" {
-    type = string
-    description = "Name of the node"
+  type        = string
+  description = "Name of the node"
 }
 
 # K8s specific variables
@@ -117,23 +121,35 @@ variable "nsxt_overlay_tz" {
 }
 
 variable "nsx_policy_top_ID" {
-  type = string
-  description = "ID of the top firewall policy object"  
+  type        = string
+  description = "ID of the top firewall policy object"
 }
 
 variable "nsx_policy_bottom_ID" {
-  type = string
-  description = "ID of the bottom firewall policy object"  
+  type        = string
+  description = "ID of the bottom firewall policy object"
 }
 
 variable "nsxt_management_network" {
   type        = string
   description = "Network used for management network segment"
-  default     = "172.16.111.0"
+  default     = "172.16.110.0"
 }
 
 variable "nsxt_management_mask" {
   type        = string
   description = "Subnet mask used for management network segment"
+  default     = "24"
+}
+
+variable "nsxt_overlay_network" {
+  type        = string
+  description = "Network used for overlay network segment"
+  default     = "172.16.111.0"
+}
+
+variable "nsxt_overlay_mask" {
+  type        = string
+  description = "Subnet mask used for overlay network segment"
   default     = "24"
 }

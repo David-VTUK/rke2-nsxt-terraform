@@ -52,13 +52,13 @@ variable "nsxt_external_ip_pools_lb_name" {
 variable "nsxt_external_ip_pools_lb" {
   type        = string
   description = "IP Pool to allocate external IP addresses from"
-  default = "10.100.100.0/24"
+  default     = "10.100.100.0/24"
 }
 
 variable "nsxt_overlay_network" {
   type        = string
   description = "Network used for overlay network segment"
-  default     = "172.16.110.0"
+  default     = "172.16.111.0"
 }
 variable "nsxt_overlay_network_name" {
   type        = string
@@ -70,6 +70,13 @@ variable "nsxt_management_network_name" {
   description = "Network name used for management network segment"
 }
 
+
+variable "dns_server_address" {
+  type        = string
+  description = "DNS Server IP to be given out via DHCP leases"
+}
+
+
 variable "nsxt_overlay_mask" {
   type        = string
   description = "Subnet mask used for overlay network segment"
@@ -79,7 +86,7 @@ variable "nsxt_overlay_mask" {
 variable "nsxt_management_network" {
   type        = string
   description = "Network used for management network segment"
-  default     = "172.16.111.0"
+  default     = "172.16.110.0"
 }
 
 variable "nsxt_management_mask" {
