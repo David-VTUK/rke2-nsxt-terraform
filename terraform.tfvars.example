@@ -1,0 +1,37 @@
+nsxt_t0_router            = "T0"
+nsxt_edgecluster          = "edge-cluster"
+nsxt_api                  = "172.16.10.43"
+nsxt_username             = "admin"
+nsxt_password             = "SupersecretPassword"
+nsxt_overlay_tz           = "nsx-overlay-transportzone"
+nsxt_container_ipblocks   = "172.200.0.0/16"
+nsxt_external_ip_pools_lb = "172.30.10.0/24"
+nsxt_insecure             = true
+nsxt_overlay_network_name    = "overlay-segment"
+nsxt_management_network_name = "management-segment"
+
+vsphere_user     = "administrator@vsphere.local"
+vsphere_password = "SupersecretPassword"
+vsphere_server   = "172.16.10.22"
+
+k8s_clustername        = "testcluster3"
+k8s_ovs_uplink_port    = "ens224"
+k8s_ncp_image_location = "core.harbor.virtualthoughts.co.uk/library/nsx-ncp-ubuntu:latest"
+
+vm_template_name      = "nsxt-template-guestinfo"
+vm_template_num_cpu   = 4
+vm_template_disk_size = "50000"
+vm_datastore          = "p-esxi2-nvme-1"
+vm_datacenter         = "Homelab"
+vm_mem_size           = "4096"
+vm_compute_cluster = "MGMT"
+k8s_nodename = "terraform-test"
+
+rancher2_access_key = "token"
+rancher2_secret_key = "secret"
+rancher2_baseurl    = "https://rancherdomain"
+
+dns_server_address = "172.16.10.208"
+
+k8s_clusterversion = "v1.22.10+rke2r2"
+vm_guestid = "ubuntu64Guest"

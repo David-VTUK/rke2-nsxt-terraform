@@ -51,6 +51,7 @@ module "rancher" {
 
   k8s_clustername = var.k8s_clustername
   k8s_nodename    = var.k8s_nodename
+  k8s_clusterversion = var.k8s_clusterversion
 
   nsxt_insecure                  = var.nsxt_insecure
   nsx_policy_top_ID              = module.nsxt.policy_top_ID
@@ -65,5 +66,15 @@ module "rancher" {
   k8s_apiserver_host_port        = "6443"
   k8s_ovs_uplink_port            = var.k8s_ovs_uplink_port
   k8s_ncp_image_location         = var.k8s_ncp_image_location
+
+  vm_datastore = var.vm_datastore
+  vm_mem_size = var.vm_mem_size
+  vm_compute_cluster = var.vm_compute_cluster
+  vm_guestid = var.vm_guestid
+  vm_template_name = var.vm_template_name
+  vm_template_disk_size = var.vm_template_disk_size
+  vm_datacenter = var.vm_datacenter
+  vm_template_num_cpu = var.vm_template_num_cpu
+
 }
 

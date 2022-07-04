@@ -23,6 +23,20 @@ variable "vm_datastore" {
   description = "Destination datastore for the RKE2 node VM"
 }
 
+variable "vm_compute_cluster" {
+  type        = string
+  description = "vSphere cluster for the VM to reside in"
+}
+
+variable "vm_datacenter" {
+  type        = string
+  description = "vSphere datacenter for the VM to reside in"
+}
+
+variable "vm_guestid" {
+  type        = string
+  description = "Guest ID of the VM. IE ubuntu64Guest"
+}
 
 variable "management_segment_id" {
   type        = string
@@ -53,6 +67,11 @@ variable "nsxt_management_network_path" {
 variable "k8s_clustername" {
   type        = string
   description = "Name of the cluster used for tagging"
+}
+
+variable "k8s_clusterversion" {
+  type        = string
+  description = "Version of k8s to install. IE v1.22.10+rke2r2"
 }
 
 variable "k8s_nodename" {

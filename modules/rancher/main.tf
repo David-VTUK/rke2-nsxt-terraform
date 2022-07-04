@@ -1,5 +1,5 @@
 data "vsphere_datacenter" "dc" {
-  name = "Homelab"
+  name = var.vm_datacenter
 }
 
 data "vsphere_network" "management_network" {
@@ -15,21 +15,20 @@ data "vsphere_network" "overlay_network" {
 }
 
 data "vsphere_virtual_machine" "template" {
-  name          = "nsxt-template-guestinfo"
+  name          = var.vm_template_name
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
 data "vsphere_compute_cluster" "compute_cluster" {
-  name          = "MGMT"
+  name          = var.vm_compute_cluster
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
 data "vsphere_datastore" "datastore" {
-  name          = "p-esxi1-nvme-1"
+  name          = var.vm_datastore
   datacenter_id = data.vsphere_datacenter.dc.id
 
 }
-
 
 resource "time_sleep" "wait_10_seconds" {
   create_duration = "10s"
@@ -43,7 +42,7 @@ resource "vsphere_virtual_machine" "vm" {
 
   num_cpus = var.vm_template_num_cpu
   memory   = var.vm_mem_size
-  guest_id = "ubuntu64Guest"
+  guest_id = var.vm_guestid
 
 
   clone {
@@ -103,7 +102,7 @@ resource "nsxt_policy_vm_tags" "vm1_tags" {
 
 resource "rancher2_cluster_v2" "nsxt_cluster" {
   name               = var.k8s_clustername
-  kubernetes_version = "v1.22.10+rke2r2"
+  kubernetes_version = var.k8s_clusterversion
   rke_config {
     machine_global_config = <<EOF
       cni: none
